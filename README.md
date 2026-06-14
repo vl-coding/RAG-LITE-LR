@@ -1,14 +1,14 @@
 # RAG-LITE-LR
 
-**[Live demo](https://rag-lite-lr-4h68wkyewerffljjz9c9p3.streamlit.app/)**
-
-![RAG-LITE-LR search results](docs/images/app_screenshot.png)
-
 A lightweight literature-search assistant for organizations with limited
 technical resources — built for non-profits, advocacy groups, and small
 research teams who need to search a focused document collection (grant
 reports, program evaluations, journal articles) and get plain-language
 relevance notes back.
+
+— **[Try the live demo →](https://rag-lite-lr-4h68wkyewerffljjz9c9p3.streamlit.app/)**
+
+![RAG-LITE-LR search results](docs/images/app_screenshot.png)
 
 > **New to this project?** See [FOR_NONPROFITS.md](FOR_NONPROFITS.md) for a
 > non-technical overview of what this tool does, when to use it, and what
