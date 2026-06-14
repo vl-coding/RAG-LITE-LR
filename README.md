@@ -124,3 +124,13 @@ restricted the search to, out of `trace.total_corpus_size` overall.
 | Prefilter | Qwen keyword extraction | none (corpus is already small) |
 | Setup | GPU recommended for full reindex | Runs on a laptop |
 | Best for | Broad CS/ML/quant literature reviews | A specific program area, topic, or grant portfolio |
+
+## Related projects
+
+- [RAG-L-R-Assistant (RAGLR-A)](https://github.com/vl-coding/RAGLR-A) — the
+  larger, research-focused sibling of this project, indexing the full ~3M-paper
+  arXiv corpus.
+
+---
+
+Built by [vl-coding](https://github.com/vl-coding).

@@ -170,6 +170,13 @@ with st.sidebar:
     st.divider()
     st.caption("Tip: describe what you need in everyday language — full sentences and questions work well.")
 
+    st.divider()
+    st.caption(
+        "Built by [vl-coding](https://github.com/vl-coding). "
+        "For a larger, research-focused RAG system over ~3M arXiv papers, "
+        "see [RAGLR-A](https://github.com/vl-coding/RAGLR-A)."
+    )
+
 apply_theme(domain_info["color"])
 
 # -----------------------------------------------------------------------

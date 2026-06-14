@@ -1,16 +1,16 @@
-pandas
-numpy
-pyyaml
-python-dotenv
-tqdm
-requests
+pandas==3.0.3
+numpy==2.4.6
+pyyaml==6.0.3
+python-dotenv==1.2.2
+tqdm==4.68.2
+requests==2.34.2
 
-sentence-transformers
-bm25s
+sentence-transformers==5.5.1
+bm25s==0.3.9
 
-anthropic
+anthropic==0.109.1
 
-pydantic
-streamlit
+pydantic==2.13.4
+streamlit==1.58.0
 
-pytest
+pytest==9.1.0
