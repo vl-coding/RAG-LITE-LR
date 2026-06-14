@@ -1,5 +1,7 @@
 # RAG-LITE-LR
 
+**[Live demo](https://rag-lite-lr-4h68wkyewerffljjz9c9p3.streamlit.app/)**
+
 A lightweight literature-search assistant for organizations with limited
 technical resources — built for non-profits, advocacy groups, and small
 research teams who need to search a focused document collection (grant
