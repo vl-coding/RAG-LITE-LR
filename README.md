@@ -1,5 +1,7 @@
 # RAG-LITE-LR
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 A lightweight literature-search assistant for organizations with limited
 technical resources — built for non-profits, advocacy groups, and small
 research teams who need to search a focused document collection (grant
