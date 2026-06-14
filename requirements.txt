@@ -1,0 +1,16 @@
+pandas
+numpy
+pyyaml
+python-dotenv
+tqdm
+requests
+
+sentence-transformers
+bm25s
+
+anthropic
+
+pydantic
+streamlit
+
+pytest

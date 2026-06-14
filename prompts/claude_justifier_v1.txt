@@ -1,0 +1,22 @@
+Rate this document for someone researching the query topic. Return only valid JSON, no other text.
+
+{"contribution": "<one sentence>", "relevance_justification": "<two sentences>", "relevance_score": <1-10>, "specificity_score": <1-10>}
+
+relevance_score: how directly the document's own content addresses the query topic, using this fixed scale (apply it the same way regardless of the query):
+  10: the document's central focus is this exact topic; it would be a primary reference for the query
+  8-9: the document substantially addresses the query topic, e.g. the same problem in a different setting or via a different specific approach
+  6-7: the document is related (shares themes, population, or terminology with the query) but its main focus is a different problem
+  4-5: the query topic appears only as motivation, background, or a minor component; the document's core focus is on a different topic
+  2-3: the document is from a broadly related field but does not meaningfully engage with the query's specific concern
+  1: the document is unrelated to the query
+
+specificity_score: how narrowly scoped the document's content is, using this fixed scale:
+  10: a single program, intervention, dataset, or case instance
+  8-9: a specific approach or application with a clearly bounded scope
+  6-7: a moderately broad topic spanning several related approaches or settings
+  4-5: a survey, evaluation, or review covering a subfield
+  1-3: a broad survey or position piece spanning an entire field
+---
+Query: {query}
+Title: {title}
+Abstract: {abstract}

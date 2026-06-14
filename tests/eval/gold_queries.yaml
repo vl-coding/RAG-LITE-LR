@@ -1,0 +1,121 @@
+# Gold query set for RAG-LITE-LR retrieval evaluation.
+#
+# Each entry is a query phrased the way program/research staff at a
+# non-profit might actually type it, plus a small set of known-relevant
+# doc_ids drawn from data/processed/corpus.jsonl (a 400-document ERIC
+# corpus covering 10 education/social-policy topics). These ids were found
+# by inspecting titles in the corpus and were not selected via this
+# pipeline's own retrieval output, to avoid biasing the qrels.
+#
+# Used by scripts/evaluate_retrieval.py to compute end-to-end
+# Precision/Recall/NDCG@k and MRR.
+
+- query: "What programs help improve early literacy outcomes for low-income preschoolers?"
+  relevant_ids:
+    - "eric:EJ1392919"  # Teacher-Implemented Shared-Reading Intervention to Promote Early Literacy Skills of Preschoolers
+    - "eric:EJ796965"   # Applying a Response-to-Intervention Model for Early Literacy Development in Low-Income Children
+    - "eric:EJ1402033"  # An Intervention Program Based on the Syllabic Method for Enhancing Early Literacy in Preschool
+    - "eric:EJ1061401"  # Development of a Tier 3 Curriculum to Teach Early Literacy Skills
+
+- query: "How big a problem is summer learning loss for low-income students, and what can schools do about it?"
+  relevant_ids:
+    - "eric:ED536514"   # Summer Learning Loss: Why Its Effect Is Strongest among Low-Income Students and How It Can Be Overcome
+    - "eric:ED572666"   # The Summer Slide: What We Know and Can Do about Summer Learning Loss
+    - "eric:ED561141"   # Ready for Fall? Near-Term Effects of Voluntary Summer Learning Programs on Low-Income Students
+    - "eric:EJ1069945"  # Rhode Island's Innovative Solutions to Summer Learning Loss
+
+- query: "What interventions actually reduce chronic absenteeism in K-12 schools?"
+  relevant_ids:
+    - "eric:EJ1322921"  # Finding Support & Significance at School - Program Evaluation of a Chronic Absenteeism intervention
+    - "eric:EJ736314"   # Dealing with Chronic Absenteeism and Its Related Consequences
+    - "eric:ED636004"   # Addressing Chronic Absenteeism. Position Statement.
+    - "eric:ED676172"   # Chronic Absenteeism Is Hampering School Improvement Efforts in New York City
+
+- query: "What does the research say about school-based mental health programs and their effectiveness?"
+  relevant_ids:
+    - "eric:ED660945"   # School-Based Mental Health Initiatives: Challenges and Considerations for Policymakers
+    - "eric:EJ603001"   # School-Based Mental Health Programs in the United States: Present Status and a Blueprint for the Future
+    - "eric:ED509816"   # School Mental Health Services for the 21st Century: Lessons from the District of Columbia
+    - "eric:EJ1458637"  # A Rapid Review of Mental Health Training Programs for School Nurses
+
+- query: "What does trauma-informed practice look like in schools and does it help students?"
+  relevant_ids:
+    - "eric:EJ1217169"  # Trauma-Informed Practices in Schools across Two Decades: An Interdisciplinary Review of Research
+    - "eric:ED619087"   # Impact of Implementing Trauma-Informed Practices on Student- and Staff-Level School-Wide Outcomes
+    - "eric:ED649384"   # A Mixed-Methods Study on the Implementation of Trauma-Informed Practices in a Rural Elementary School
+    - "eric:EJ1437095"  # Transcending Attitudes: Teacher Responses to Professional Development in Trauma-Informed Education
+
+- query: "How can we help first-generation students get into and succeed in college?"
+  relevant_ids:
+    - "eric:ED514432"   # Achieving College Access Goals: The Relevance of New Media in Reaching First-Generation Students
+    - "eric:EJ1313617"  # College Access for Prospective First-Generation High School Students: Parent Perceptions
+    - "eric:ED581204"   # The Impact of a Community-Based College Access Program at a Midwestern Institution
+    - "eric:EJ1045347"  # The Challenges, Persistence, and Success of White, Working-Class, First-Generation College Students
+
+- query: "What family and parent engagement strategies improve outcomes for students?"
+  relevant_ids:
+    - "eric:ED629437"   # Parent and Family Engagement Services by Parent Support Specialists: Summary Report
+    - "eric:ED618969"   # Family Engagement Services by Parent Support Specialists, 2018-2019
+    - "eric:EJ1222935"  # Latinx Family Engagement in Schools and Surrounding Communities
+    - "eric:ED658992"   # Exploring Parent Engagement in School-Based Behavioral Health Programs
+
+- query: "Do after-school programs improve academic outcomes for at-risk students?"
+  relevant_ids:
+    - "eric:ED521698"   # After-School Programs and Academics: Implications for Policy, Practice, and Research
+    - "eric:EJ1070820"  # What Works after School? The Relationship between After-School Program Quality, Program Attendance...
+    - "eric:ED496742"   # After-School Programs and Academic Impact: A Study of Chicago's After School Matters
+    - "eric:EJ623054"   # Mt. Olivet After-School Program: Peer-Mediated Interventions for At-Risk Students
+
+# --- Environment & Conservation (DOAJ) ------------------------------------
+
+- query: "What approaches help local communities participate effectively in conservation programs?"
+  domain: environment
+  relevant_ids:
+    - "doaj:00ac75b96f7f48f9b333681fead3a766"  # Characteristics of immersive citizen science experiences that drive conservation engagement
+    - "doaj:06a29852534a45c3965afaa082b909bc"  # How do local people value ecosystem service benefits received from conservation programs?
+    - "doaj:144df394920b43eebe2aa30db6e3e505"  # Enhancing data justice in community-led conservation: a case study from Indonesian Borneo
+    - "doaj:091ee21eb6fb4ef9b41ec50b6da01c56"  # "Planning over programs": challenges and opportunities affecting participation of underrepresented groups
+
+- query: "How are local communities adapting to climate change, and what strategies are working?"
+  domain: environment
+  relevant_ids:
+    - "doaj:03cb6cb7641a453c987dfca0e0c4eb45"  # Less Rain and More Heat?: Smallholders' Perception and Climate Change Adaptation Strategies
+    - "doaj:0756f2fd41f7446ba27c91b2f81813d0"  # Local-scale factors and dynamics in climate adaptability among subsistence farmers in Peru
+    - "doaj:01e16231b1554bc1ada2868b5a58313b"  # Integrating community based disaster risk reduction and climate change adaptation
+    - "doaj:04a2a85450c44392babe1c0a43b077f1"  # Assessing vulnerabilities and resilience strategies for communities facing climate change
+
+# --- Research (general / multidisciplinary, DOAJ) -------------------------
+
+- query: "What does community-based participatory research look like in practice?"
+  domain: research
+  relevant_ids:
+    - "doaj:0085e037b7774a829750f311f98fb4b9"  # Cultivating community-based participatory research (CBPR) to respond to the COVID-19 pandemic
+    - "doaj:00d4f816bbfe4776bf15b8d90573ff45"  # Weaving community-based participatory research and co-design to improve opioid use treatment
+    - "doaj:00e75b959df447189fc40fd12a556cbe"  # Using participatory research to co-produce an education and training e-resource
+    - "doaj:0099ad2023cd40ea952ad541115181bd"  # Transformative-Participatory Legal Research Method for Harmonizing...
+
+- query: "How can organizations evaluate the impact of their community health programs?"
+  domain: research
+  relevant_ids:
+    - "doaj:00126da5d4b04bb891dd08984f357df3"  # Evaluation of clinical quality improvement interventions: feasibility of an integrated approach
+    - "doaj:038f4184debf426fb65be34a072f0a3d"  # Process Evaluation of a Mobile Weight Loss Intervention for Truck Drivers
+    - "doaj:0669fc25069e41009f3e5b7b2bc7e137"  # Impact of Service-Learning on Student Counselors' Self-Reported Measures of Program Evaluation
+    - "doaj:00b13b165cb4430c9d4150b767bd2fa9"  # Developing a Participatory Health Promotion Model: Community Cadre Interventions
+
+# --- Arts & Culture (DOAJ) --------------------------------------------------
+
+- query: "How can arts-based programs support youth development and community engagement?"
+  domain: arts_culture
+  relevant_ids:
+    - "doaj:26b3c89730d14399aece597d92aeeaef"  # Fostering childhood prosociality and relatedness: the perceived impact of an arts-based program
+    - "doaj:46e6ee523a1248b89da0b4636eba26e9"  # More than a Mural: The Intersection of Public Art, Immigrant Youth, and Human Rights
+    - "doaj:07b226eda07e45088cee49934cda59cf"  # Everyday Peace Power: Girl Drummers of Gira Ingoma in Rwanda
+    - "doaj:0630823f57ab4028aab63cf418c67117"  # Prajuritan Dance as a Medium for Anti-Corruption Character Education
+
+- query: "What strategies help preserve and promote cultural heritage in local communities?"
+  domain: arts_culture
+  relevant_ids:
+    - "doaj:1dd38dc6f03c466f8a3e739a0e54db45"  # Some Aspects of the Conservation of the Cultural Heritage of Dagestan Republic
+    - "doaj:06dee761164b449ba6b784cbb5daffde"  # Heritage protection in low-density areas: CIM Douro
+    - "doaj:1a0bb5501bea4dfdb72d14f743596226"  # Financing cultural heritage
+    - "doaj:2317496de1c84f8d8e8f1673891ccd14"  # Polish ethnocultural landscape of Podillya: structure, use, protection of cultural heritage

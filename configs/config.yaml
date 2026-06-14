@@ -1,0 +1,29 @@
+data:
+  processed_path: "data/processed/corpus.jsonl"
+
+retrieval:
+  default_top_k: 5
+  dense_candidates: 50
+  bm25_candidates: 50
+  rrf_k: 60
+  near_duplicate_threshold: 0.92
+  # HyDE and Claude justification each cost one Claude call per query (or per
+  # result, for justification). Both default on for result quality, but can
+  # be turned off per-call to control cost.
+  use_hyde: true
+  use_justification: true
+
+models:
+  embedding_model: "sentence-transformers/all-MiniLM-L6-v2"
+  # Haiku keeps per-query cost low; swap to a Sonnet model for higher-quality
+  # justifications if budget allows.
+  claude_model: "claude-haiku-4-5"
+  claude_max_retries: 5
+  claude_timeout_seconds: 60
+  claude_justifier_max_concurrency: 5
+
+paths:
+  dense_index_dir: "artifacts/dense_index"
+  bm25_index: "artifacts/bm25_index"
+  logs_dir: "logs"
+  outputs_dir: "outputs"
