@@ -22,11 +22,12 @@ import requests
 OPENALEX_API_URL = "https://api.openalex.org/works"
 
 
-def fetch_query(query: str, rows: int, mailto: str = None) -> list:
+def fetch_query(query: str, rows: int, mailto: str = None, page: int = 1) -> list:
     params = {
         "search": query,
         "per_page": min(rows, 200),
         "filter": "has_abstract:true",
+        "page": page,
     }
     if mailto:
         params["mailto"] = mailto
@@ -102,7 +103,11 @@ def main():
     parser.add_argument("--query", action="append", required=True, dest="queries",
                          help="Search query (repeatable for multiple topics)")
     parser.add_argument("--rows", type=int, default=30,
-                         help="Number of results to fetch per query (default: 30)")
+                         help="Number of results to fetch per query, per page (default: 30, max 200)")
+    parser.add_argument("--pages", type=int, default=1,
+                         help="Number of pages to fetch per query (default: 1). Each page returns "
+                              "up to --rows results; page * rows must stay under OpenAlex's 10,000 "
+                              "result pagination cap.")
     parser.add_argument("--out", required=True, help="Output JSONL path")
     parser.add_argument("--sleep", type=float, default=0.5,
                          help="Seconds to sleep between requests (default: 0.5)")
@@ -119,24 +124,28 @@ def main():
     documents = []
 
     for query in args.queries:
-        print(f"Fetching OpenAlex results for: {query!r}", file=sys.stderr)
-        try:
-            results = fetch_query(query, args.rows, mailto=args.mailto)
-        except requests.RequestException as exc:
-            print(f"  request failed: {exc}", file=sys.stderr)
-            continue
+        for page in range(1, args.pages + 1):
+            print(f"Fetching OpenAlex results for: {query!r} (page {page})", file=sys.stderr)
+            try:
+                results = fetch_query(query, args.rows, mailto=args.mailto, page=page)
+            except requests.RequestException as exc:
+                print(f"  request failed: {exc}", file=sys.stderr)
+                break
 
-        for work in results:
-            record = to_document(work, domain=args.domain)
-            if not record["title"] or not record["abstract"]:
-                continue
-            if record["doc_id"] in seen_ids:
-                continue
-            seen_ids.add(record["doc_id"])
-            documents.append(record)
+            if not results:
+                break
 
-        print(f"  got {len(results)} results, {len(documents)} new unique so far", file=sys.stderr)
-        time.sleep(args.sleep)
+            for work in results:
+                record = to_document(work, domain=args.domain)
+                if not record["title"] or not record["abstract"]:
+                    continue
+                if record["doc_id"] in seen_ids:
+                    continue
+                seen_ids.add(record["doc_id"])
+                documents.append(record)
+
+            print(f"  got {len(results)} results, {len(documents)} new unique so far", file=sys.stderr)
+            time.sleep(args.sleep)
 
     with open(out_path, "a", encoding="utf-8") as f:
         for record in documents:

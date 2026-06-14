@@ -60,12 +60,28 @@ def to_document(doc: dict, domain: str = None) -> dict:
     }
 
 
+def load_existing_ids(out_path: Path) -> set:
+    if not out_path.exists():
+        return set()
+    seen = set()
+    with open(out_path, "r", encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+            seen.add(json.loads(line).get("doc_id"))
+    return seen
+
+
 def main():
     parser = argparse.ArgumentParser(description="Fetch documents from ERIC")
     parser.add_argument("--query", action="append", required=True, dest="queries",
                          help="Search query (repeatable for multiple topics)")
     parser.add_argument("--rows", type=int, default=50,
-                         help="Number of results to fetch per query (default: 50)")
+                         help="Number of results to fetch per query, per page (default: 50)")
+    parser.add_argument("--pages", type=int, default=1,
+                         help="Number of pages to fetch per query (default: 1). Each page "
+                              "advances 'start' by --rows.")
     parser.add_argument("--out", required=True, help="Output JSONL path")
     parser.add_argument("--sleep", type=float, default=0.5,
                          help="Seconds to sleep between requests (default: 0.5)")
@@ -76,28 +92,33 @@ def main():
     out_path = Path(args.out)
     out_path.parent.mkdir(parents=True, exist_ok=True)
 
-    seen_ids = set()
+    seen_ids = load_existing_ids(out_path)
     documents = []
 
     for query in args.queries:
-        print(f"Fetching ERIC results for: {query!r}", file=sys.stderr)
-        try:
-            docs = fetch_query(query, args.rows)
-        except requests.RequestException as exc:
-            print(f"  request failed: {exc}", file=sys.stderr)
-            continue
+        for page in range(args.pages):
+            start = page * args.rows
+            print(f"Fetching ERIC results for: {query!r} (start {start})", file=sys.stderr)
+            try:
+                docs = fetch_query(query, args.rows, start=start)
+            except requests.RequestException as exc:
+                print(f"  request failed: {exc}", file=sys.stderr)
+                break
 
-        for doc in docs:
-            record = to_document(doc, domain=args.domain)
-            if not record["title"] or not record["abstract"]:
-                continue
-            if record["doc_id"] in seen_ids:
-                continue
-            seen_ids.add(record["doc_id"])
-            documents.append(record)
+            if not docs:
+                break
 
-        print(f"  got {len(docs)} results, {len(documents)} total unique so far", file=sys.stderr)
-        time.sleep(args.sleep)
+            for doc in docs:
+                record = to_document(doc, domain=args.domain)
+                if not record["title"] or not record["abstract"]:
+                    continue
+                if record["doc_id"] in seen_ids:
+                    continue
+                seen_ids.add(record["doc_id"])
+                documents.append(record)
+
+            print(f"  got {len(docs)} results, {len(documents)} total unique so far", file=sys.stderr)
+            time.sleep(args.sleep)
 
     with open(out_path, "a", encoding="utf-8") as f:
         for record in documents:
