@@ -84,6 +84,11 @@ def evaluate_query(pipeline, entry, top_k, use_justification):
     result = {
         "query": entry["query"],
         "relevant_ids": sorted(relevant_ids),
+        "latency": {
+            "total_seconds": response.trace.total_latency_seconds,
+            "dense_seconds": response.trace.dense_latency_seconds,
+            "bm25_seconds": response.trace.bm25_latency_seconds,
+        },
         "e2e": {
             "precision@k": precision_at_k(retrieved_ids, relevant_ids, top_k),
             "recall@k": recall_at_k(retrieved_ids, relevant_ids, top_k),
@@ -126,6 +131,23 @@ def report_e2e(per_query_results, top_k):
         mean_val = statistics.mean(r["e2e"][metric] for r in per_query_results)
         print(f"mean {metric}={mean_val:.3f}", end="  ")
     print()
+
+
+def report_latency(per_query_results):
+    print("\n=== Per-query latency ===")
+    rows = []
+    for r in per_query_results:
+        lat = r["latency"]
+        rows.append([
+            r["query"][:50],
+            _fmt(lat["total_seconds"]),
+            _fmt(lat["dense_seconds"]),
+            _fmt(lat["bm25_seconds"]),
+        ])
+    _print_table(["query", "total_s", "dense_s", "bm25_s"], rows)
+    total_values = [r["latency"]["total_seconds"] for r in per_query_results]
+    print(f"mean total_s={statistics.mean(total_values):.3f}  "
+          f"min={min(total_values):.3f}  max={max(total_values):.3f}")
 
 
 def report_calibration(per_query_results):
@@ -179,6 +201,7 @@ def main():
     report = {"config": vars(args), "per_query": per_query_results}
 
     report_e2e(per_query_results, top_k)
+    report_latency(per_query_results)
     if use_justification:
         report_calibration(per_query_results)
 

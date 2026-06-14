@@ -2,10 +2,12 @@
 #
 # Each entry is a query phrased the way program/research staff at a
 # non-profit might actually type it, plus a small set of known-relevant
-# doc_ids drawn from data/processed/corpus.jsonl (a 400-document ERIC
-# corpus covering 10 education/social-policy topics). These ids were found
-# by inspecting titles in the corpus and were not selected via this
-# pipeline's own retrieval output, to avoid biasing the qrels.
+# doc_ids drawn from data/processed/corpus.jsonl (an ~1,123-document corpus
+# spanning education/social-policy (ERIC), and environment, research, and
+# arts & culture topics from DOAJ, OpenAlex, Europe PMC, PLOS, and World
+# Bank Documents & Reports). These ids were found by inspecting titles in
+# the corpus, not selected via this pipeline's own retrieval output, to
+# avoid biasing the qrels.
 #
 # Used by scripts/evaluate_retrieval.py to compute end-to-end
 # Precision/Recall/NDCG@k and MRR.
@@ -30,6 +32,12 @@
     - "eric:EJ736314"   # Dealing with Chronic Absenteeism and Its Related Consequences
     - "eric:ED636004"   # Addressing Chronic Absenteeism. Position Statement.
     - "eric:ED676172"   # Chronic Absenteeism Is Hampering School Improvement Efforts in New York City
+    - "eric:ED614717"   # Exploring Implementation of Attendance Supports to Reduce Chronic Absenteeism in Providence
+    - "eric:EJ1174318"  # School Organizational Effectiveness and Chronic Absenteeism: Implications for Accountability
+    - "eric:ED536529"   # Chronic Absenteeism in the Elementary Grades. Information Capsule.
+    - "eric:EJ1429621"  # School-Based Health Services and Chronic Absenteeism: Evidence from Hawai'i Public High Schools
+    - "eric:ED546899"   # WWC Review of "Meeting the Challenge of Combating Chronic Absenteeism" (NYC Mayor's Task Force)
+    - "eric:EJ1174347"  # Using Data and the Human Touch: Evaluating the NYC Inter-Agency Campaign to Reduce Chronic Absenteeism
 
 - query: "What does the research say about school-based mental health programs and their effectiveness?"
   relevant_ids:
@@ -44,6 +52,11 @@
     - "eric:ED619087"   # Impact of Implementing Trauma-Informed Practices on Student- and Staff-Level School-Wide Outcomes
     - "eric:ED649384"   # A Mixed-Methods Study on the Implementation of Trauma-Informed Practices in a Rural Elementary School
     - "eric:EJ1437095"  # Transcending Attitudes: Teacher Responses to Professional Development in Trauma-Informed Education
+    - "eric:EJ1462899"  # Trauma-Informed Practice as a Component to Improve Student Wellbeing
+    - "eric:ED680745"   # Understanding and Implementing Trauma-Informed Practice in Schools: An Evidence-Based Guide
+    - "eric:ED643456"   # Trauma-Informed Practices in Elementary School: Teacher Implementation and Student Responses
+    - "eric:ED603773"   # Trauma-Informed Schools in Pennsylvania: Aligning Expansion with High-Quality Implementation
+    - "eric:EJ1229026"  # Helping Students Heal: Observations of Trauma-Informed Practices in the Schools
 
 - query: "How can we help first-generation students get into and succeed in college?"
   relevant_ids:
@@ -58,6 +71,10 @@
     - "eric:ED618969"   # Family Engagement Services by Parent Support Specialists, 2018-2019
     - "eric:EJ1222935"  # Latinx Family Engagement in Schools and Surrounding Communities
     - "eric:ED658992"   # Exploring Parent Engagement in School-Based Behavioral Health Programs
+    - "eric:ED612195"   # The Family School Community Partnership: An Evaluation of a School-Based Parent Engagement Initiative
+    - "eric:EJ1082685"  # Family Engagement within Schoolwide Positive Behavioral Interventions and Supports
+    - "eric:ED658182"   # Engaging First: Supporting Young Learners through Family Engagement
+    - "eric:EJ1217339"  # Family Focused Strategies for Student Engagement
 
 - query: "Do after-school programs improve academic outcomes for at-risk students?"
   relevant_ids:
@@ -65,6 +82,9 @@
     - "eric:EJ1070820"  # What Works after School? The Relationship between After-School Program Quality, Program Attendance...
     - "eric:ED496742"   # After-School Programs and Academic Impact: A Study of Chicago's After School Matters
     - "eric:EJ623054"   # Mt. Olivet After-School Program: Peer-Mediated Interventions for At-Risk Students
+    - "eric:ED501655"   # The Evaluation of Enhanced Academic Instruction in After-School Programs (NCEE 2008-4021)
+    - "eric:ED501882"   # WWC Quick Review: Outcomes Linked to High-Quality Afterschool Programs
+    - "eric:ED424343"   # Review of Extended-Day and After-School Programs and Their Effectiveness
 
 # --- Environment & Conservation (DOAJ) ------------------------------------
 
@@ -75,6 +95,9 @@
     - "doaj:06a29852534a45c3965afaa082b909bc"  # How do local people value ecosystem service benefits received from conservation programs?
     - "doaj:144df394920b43eebe2aa30db6e3e505"  # Enhancing data justice in community-led conservation: a case study from Indonesian Borneo
     - "doaj:091ee21eb6fb4ef9b41ec50b6da01c56"  # "Planning over programs": challenges and opportunities affecting participation of underrepresented groups
+    - "doaj:03405b0b47324683a8fb20e0cad89c89"  # Beyond Nature Appropriation: Towards Post-development Conservation in the Maya Forest
+    - "doaj:10c7ea03bd514bec82f362dcd2edf873"  # A framework for using community determined iconic species to advance socio-ecology connections
+    - "doaj:05bac4f433a24eb5b4e9337421e30059"  # Aligning the management of nature-based solutions to locally led adaptation principles (Makueni, Kenya)
 
 - query: "How are local communities adapting to climate change, and what strategies are working?"
   domain: environment
@@ -93,6 +116,10 @@
     - "doaj:00d4f816bbfe4776bf15b8d90573ff45"  # Weaving community-based participatory research and co-design to improve opioid use treatment
     - "doaj:00e75b959df447189fc40fd12a556cbe"  # Using participatory research to co-produce an education and training e-resource
     - "doaj:0099ad2023cd40ea952ad541115181bd"  # Transformative-Participatory Legal Research Method for Harmonizing...
+    - "plos:10.1371/journal.pone.0255265"     # Are we walking the talk of participatory Indigenous health research? A scoping review
+    - "doaj:000274b10283441fa494362e770b107e"  # Beyond Healthy Eating: The Broader Impact of the Food Boost Challenge's Participatory Approach
+    - "plos:10.1371/journal.pone.0326737"     # The challenge of participatory projects for physical activity promotion
+    - "doaj:002fbc8a10024d1bbde4b70ee329142c"  # Building Research Collaborative Using Strength-Based Assessments and GIS Maps with CBOs in the Bronx
 
 - query: "How can organizations evaluate the impact of their community health programs?"
   domain: research
@@ -101,6 +128,10 @@
     - "doaj:038f4184debf426fb65be34a072f0a3d"  # Process Evaluation of a Mobile Weight Loss Intervention for Truck Drivers
     - "doaj:0669fc25069e41009f3e5b7b2bc7e137"  # Impact of Service-Learning on Student Counselors' Self-Reported Measures of Program Evaluation
     - "doaj:00b13b165cb4430c9d4150b767bd2fa9"  # Developing a Participatory Health Promotion Model: Community Cadre Interventions
+    - "plos:10.1371/journal.pntd.0006211"     # Strategies to improve treatment coverage in community-based public health programs
+    - "doaj:067e60f96b7243a2b8b56233eea13327"  # Strengthening the Capacity of Service Providers... COVID-19 ACB Providers Project Implementation and Evaluation
+    - "doaj:05ff9f4226dc41ad9a9b4f222509e9b1"  # Healthy school recognized campus: hybrid type 2 implementation-effectiveness cluster RCT
+    - "plos:10.1371/journal.pone.0294458"     # Exploring barriers and facilitators of implementing an at-home SARS-CoV-2 self-testing intervention (RADx-UP)
 
 # --- Arts & Culture (DOAJ) --------------------------------------------------
 
@@ -111,6 +142,10 @@
     - "doaj:46e6ee523a1248b89da0b4636eba26e9"  # More than a Mural: The Intersection of Public Art, Immigrant Youth, and Human Rights
     - "doaj:07b226eda07e45088cee49934cda59cf"  # Everyday Peace Power: Girl Drummers of Gira Ingoma in Rwanda
     - "doaj:0630823f57ab4028aab63cf418c67117"  # Prajuritan Dance as a Medium for Anti-Corruption Character Education
+    - "openalex:W4390519162"  # Supporting youth mental health with arts-based strategies: a global perspective
+    - "openalex:W3011225929"  # A Scoping Review of Arts-Based Mindfulness Interventions for Children and Youth
+    - "plos:10.1371/journal.pone.0314994"  # WeARTolerance: arts-based program to reduce mental health-related stigma in young people
+    - "doaj:87fe16f2e53a489792b935b6cd465c7b"  # Museums, youth, and inclusive learning: insights from the Young Culture Ambassadors Project
 
 - query: "What strategies help preserve and promote cultural heritage in local communities?"
   domain: arts_culture
@@ -119,3 +154,39 @@
     - "doaj:06dee761164b449ba6b784cbb5daffde"  # Heritage protection in low-density areas: CIM Douro
     - "doaj:1a0bb5501bea4dfdb72d14f743596226"  # Financing cultural heritage
     - "doaj:2317496de1c84f8d8e8f1673891ccd14"  # Polish ethnocultural landscape of Podillya: structure, use, protection of cultural heritage
+    - "worldbank:442079"  # Culture in sustainable development: investing in cultural and natural endowments
+    - "worldbank:442006"  # Romania - Cultural Heritage Project
+    - "doaj:1fb7e4f14b9043c78aabae6ef7f5688f"  # Preserving Heritage, Promoting Growth: The Tourism Carrying Capacity of Subak Pulagan
+
+# --- Added with the OpenAlex / Europe PMC connectors ----------------------
+
+- query: "What does the research say about environmental health disparities in low-income or marginalized communities?"
+  domain: environment
+  relevant_ids:
+    - "europepmc:MED:42021851"  # Recurrent climate related extreme events and patterns of race/ethnic mortality
+    - "europepmc:MED:41712559"  # The equity implications of exposure to industrial livestock operations
+    - "europepmc:MED:42052002"  # Interventions for health equity with a One Health focus: a review of reviews
+    - "europepmc:MED:41855169"  # Optimizing spatial equity of urban park cooling services
+    - "europepmc:MED:41372800"  # The concept of environmental injustice in allergy and asthma
+    - "doaj:03e1884d8a87437e8b4dacdfb7b492cf"  # Intersections among housing, environmental conditions, and health equity
+    - "europepmc:MED:42066916"  # Predicting asthma prevalence across US communities by integrating social vulnerability and environmental risk
+    - "doaj:316504759bde41a788292451caa2adb4"  # Leveraging crowd-sourced environmental data to assess air pollution exposure disparity (LA County)
+    - "plos:10.1371/journal.pone.0252127"     # Crosscutting environmental risk with design: socioecological approach for Iowa's small towns
+
+- query: "How do nonprofit organizations measure and improve their own effectiveness?"
+  domain: research
+  relevant_ids:
+    - "openalex:W1574680396"  # Accountability and Effectiveness Evaluation in Nonprofit Organizations
+    - "openalex:W1986757411"  # Advancing nonprofit organizational effectiveness research and theory: Nine theses
+    - "openalex:W2044335904"  # Strategic Performance Measurement and Management in Nonprofit Organizations
+    - "openalex:W2047583118"  # Program Evaluation Practice in the Nonprofit Sector
+    - "openalex:W2116182381"  # How Organizational Stakeholders Shape Performance Measurement in Nonprofits
+    - "openalex:W1988581683"  # Managing stakeholder relationships and nonprofit organization effectiveness
+
+- query: "How can creative arts programs support young people's mental health and wellbeing?"
+  domain: arts_culture
+  relevant_ids:
+    - "doaj:8871eb7b17ba4b9bb0c90f19e0d48819"  # The neuroesthetics of music as an alternative therapeutic model for enhancing youth mental wellbeing
+    - "openalex:W4390519162"  # Supporting youth mental health with arts-based strategies: a global perspective
+    - "openalex:W3011225929"  # A Scoping Review of Arts-Based Mindfulness Interventions for Children and Youth
+    - "openalex:W2911707452"  # Creative arts in psychotherapy for traumatized children in South Africa
