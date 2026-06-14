@@ -2,12 +2,12 @@
 #
 # Each entry is a query phrased the way program/research staff at a
 # non-profit might actually type it, plus a small set of known-relevant
-# doc_ids drawn from data/processed/corpus.jsonl (an ~1,123-document corpus
+# doc_ids drawn from data/processed/corpus.jsonl (an ~20,689-document corpus
 # spanning education/social-policy (ERIC), and environment, research, and
-# arts & culture topics from DOAJ, OpenAlex, Europe PMC, PLOS, and World
-# Bank Documents & Reports). These ids were found by inspecting titles in
-# the corpus, not selected via this pipeline's own retrieval output, to
-# avoid biasing the qrels.
+# arts & culture topics from DOAJ, OpenAlex, Europe PMC, PLOS, World Bank
+# Documents & Reports, and Crossref). These ids were found by inspecting
+# titles in the corpus, not selected via this pipeline's own retrieval
+# output, to avoid biasing the qrels.
 #
 # Used by scripts/evaluate_retrieval.py to compute end-to-end
 # Precision/Recall/NDCG@k and MRR.
@@ -98,6 +98,12 @@
     - "doaj:03405b0b47324683a8fb20e0cad89c89"  # Beyond Nature Appropriation: Towards Post-development Conservation in the Maya Forest
     - "doaj:10c7ea03bd514bec82f362dcd2edf873"  # A framework for using community determined iconic species to advance socio-ecology connections
     - "doaj:05bac4f433a24eb5b4e9337421e30059"  # Aligning the management of nature-based solutions to locally led adaptation principles (Makueni, Kenya)
+    - "openalex:W3197735684"  # The role of Indigenous peoples and local communities in effective and equitable conservation
+    - "openalex:W1983428928"  # The Costs of Exclusion: Recognizing a Role for Local Communities in Biodiversity Conservation
+    - "openalex:W1973710723"  # Protected Areas and Local Communities: an Inevitable Partnership toward Successful Conservation Strategies
+    - "openalex:W2120137763"  # Community-Based Conservation and Traditional Ecological Knowledge
+    - "openalex:W2891507628"  # African community-based conservation: a systematic review of social and ecological outcomes
+    - "worldbank:697103"      # Burkina Faso, Cote d'Ivoire - West Africa Pilot Community-Based Natural Resource and Wildlife Management
 
 - query: "How are local communities adapting to climate change, and what strategies are working?"
   domain: environment
@@ -106,6 +112,12 @@
     - "doaj:0756f2fd41f7446ba27c91b2f81813d0"  # Local-scale factors and dynamics in climate adaptability among subsistence farmers in Peru
     - "doaj:01e16231b1554bc1ada2868b5a58313b"  # Integrating community based disaster risk reduction and climate change adaptation
     - "doaj:04a2a85450c44392babe1c0a43b077f1"  # Assessing vulnerabilities and resilience strategies for communities facing climate change
+    - "worldbank:17547148"    # Community-based climate change adaptation
+    - "openalex:W2087830272"  # Adapting to climate change through local municipal planning: barriers and challenges
+    - "openalex:W2477847973"  # Community-based climate change adaptation: a review of academic literature
+    - "openalex:W1576807923"  # Community-Based Climate Change Adaptation for Building Local Resilience in the Himalayas
+    - "openalex:W2155715656"  # Integrating community based disaster risk reduction and climate change adaptation
+    - "openalex:W2109784182"  # Community based disaster preparedness and climate adaptation: local capacity-building in the Philippines
 
 # --- Research (general / multidisciplinary, DOAJ) -------------------------
 
@@ -120,6 +132,12 @@
     - "doaj:000274b10283441fa494362e770b107e"  # Beyond Healthy Eating: The Broader Impact of the Food Boost Challenge's Participatory Approach
     - "plos:10.1371/journal.pone.0326737"     # The challenge of participatory projects for physical activity promotion
     - "doaj:002fbc8a10024d1bbde4b70ee329142c"  # Building Research Collaborative Using Strength-Based Assessments and GIS Maps with CBOs in the Bronx
+    - "openalex:W2152266649"  # Community-Based Participatory Research From the Margin to the Mainstream
+    - "openalex:W2168815104"  # Community-Based Participatory Research for Health
+    - "openalex:W2105982574"  # Using Community-Based Participatory Research to Address Health Disparities
+    - "openalex:W598560448"   # Community-based participatory research for health: from process to outcomes
+    - "openalex:W2164908162"  # Participatory action research
+    - "openalex:W2164297440"  # Using Community-Based Participatory Research Methods to Reach Women With Health Messages
 
 - query: "How can organizations evaluate the impact of their community health programs?"
   domain: research
@@ -132,6 +150,9 @@
     - "doaj:067e60f96b7243a2b8b56233eea13327"  # Strengthening the Capacity of Service Providers... COVID-19 ACB Providers Project Implementation and Evaluation
     - "doaj:05ff9f4226dc41ad9a9b4f222509e9b1"  # Healthy school recognized campus: hybrid type 2 implementation-effectiveness cluster RCT
     - "plos:10.1371/journal.pone.0294458"     # Exploring barriers and facilitators of implementing an at-home SARS-CoV-2 self-testing intervention (RADx-UP)
+    - "openalex:W2061957778"  # Indigenizing CBPR: Evaluation of a Community Based and Participatory Research Process Implementation
+    - "openalex:W2914785806"  # Study protocol: evaluation of a community health promotion program in a socioeconomically deprived community
+    - "openalex:W2804589314"  # Evaluation of a community paramedicine health promotion and lifestyle risk assessment program for older adults
 
 # --- Arts & Culture (DOAJ) --------------------------------------------------
 
@@ -146,6 +167,9 @@
     - "openalex:W3011225929"  # A Scoping Review of Arts-Based Mindfulness Interventions for Children and Youth
     - "plos:10.1371/journal.pone.0314994"  # WeARTolerance: arts-based program to reduce mental health-related stigma in young people
     - "doaj:87fe16f2e53a489792b935b6cd465c7b"  # Museums, youth, and inclusive learning: insights from the Young Culture Ambassadors Project
+    - "openalex:W2949685955"  # Do Community Arts Programs Promote Positive Youth Development?
+    - "openalex:W2470090186"  # Youth-led community arts hubs: Self-determined learning in an out-of-school time (OST) program
+    - "crossref:10.32920/ryerson.14656782.v1"  # Community Arts Programming as a Factor in Newcomer Youth Inclusion: The Toronto Situation
 
 - query: "What strategies help preserve and promote cultural heritage in local communities?"
   domain: arts_culture
@@ -157,6 +181,11 @@
     - "worldbank:442079"  # Culture in sustainable development: investing in cultural and natural endowments
     - "worldbank:442006"  # Romania - Cultural Heritage Project
     - "doaj:1fb7e4f14b9043c78aabae6ef7f5688f"  # Preserving Heritage, Promoting Growth: The Tourism Carrying Capacity of Subak Pulagan
+    - "openalex:W2795961283"  # Examining Community Engagement in Heritage Conservation Through Geopark Experiences
+    - "openalex:W3011745139"  # Minority Community Resilience and Cultural Heritage Preservation: A Case Study of the Gullah Geechee
+    - "openalex:W2556835867"  # Preservation of Cultural Heritage Community: Cases of Thailand and Developed Countries
+    - "openalex:W4402542576"  # Cultural Heritage Preservation through Community Engagement: A New Paradigm for Social Sustainability
+    - "openalex:W2491307488"  # Improvement of Involvement Society in the Context of Smart Community for Cultural Heritage Preservation
 
 # --- Added with the OpenAlex / Europe PMC connectors ----------------------
 
@@ -190,3 +219,6 @@
     - "openalex:W4390519162"  # Supporting youth mental health with arts-based strategies: a global perspective
     - "openalex:W3011225929"  # A Scoping Review of Arts-Based Mindfulness Interventions for Children and Youth
     - "openalex:W2911707452"  # Creative arts in psychotherapy for traumatized children in South Africa
+    - "openalex:W4211039662"  # The Need for Robust Critique of Arts and Health Research: Young People, Art Therapy and Mental Health
+    - "openalex:W3103269401"  # Using the occupation of the creative arts to promote mental health in young people: Positive Mindset
+    - "openalex:W4313235978"  # Creative arts and digital interventions as potential tools in prevention and recovery from mental health
