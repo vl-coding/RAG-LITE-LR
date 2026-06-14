@@ -19,7 +19,7 @@ models:
   # justifications if budget allows.
   claude_model: "claude-haiku-4-5"
   claude_max_retries: 5
-  claude_timeout_seconds: 60
+  claude_timeout_seconds: 25
   claude_justifier_max_concurrency: 5
 
 paths:
