@@ -1,3 +1,4 @@
+import os
 import sys
 from pathlib import Path
 
@@ -11,11 +12,27 @@ from rag_lite.pipeline import RagLitePipeline
 
 load_dotenv()
 
+# On Streamlit Community Cloud, secrets are configured via the app dashboard
+# (or .streamlit/secrets.toml locally) and aren't exported to the environment
+# automatically. Bridge them so the Anthropic SDK can pick up the key.
+try:
+    if "ANTHROPIC_API_KEY" in st.secrets:
+        os.environ["ANTHROPIC_API_KEY"] = st.secrets["ANTHROPIC_API_KEY"]
+except st.errors.StreamlitSecretNotFoundError:
+    pass
+
 st.set_page_config(
     page_title="RAG-LITE-LR",
     page_icon="🔎",
     layout="wide",
 )
+
+if not os.getenv("ANTHROPIC_API_KEY"):
+    st.error(
+        "ANTHROPIC_API_KEY is not set. Add it to your environment (.env locally) "
+        "or to this app's Secrets in Streamlit Community Cloud before searching."
+    )
+    st.stop()
 
 config = load_config()
 ensure_project_dirs(config)
@@ -28,11 +45,31 @@ if "pipeline" not in st.session_state:
 # to theme the page once a domain is chosen.
 # -----------------------------------------------------------------------
 DOMAINS = {
-    "All topics": {"key": None, "icon": "🔎", "color": "#1F6FEB", "tagline": "Search everything in the collection."},
-    "Education": {"key": "education", "icon": "📚", "color": "#2563EB", "tagline": "Programs, curricula, and learning outcomes."},
-    "Environment & Conservation": {"key": "environment", "icon": "🌱", "color": "#15803D", "tagline": "Sustainability, climate, and conservation work."},
-    "Research": {"key": "research", "icon": "🔬", "color": "#7C3AED", "tagline": "Studies, evaluations, and methodology."},
-    "Arts & Culture": {"key": "arts_culture", "icon": "🎨", "color": "#DB2777", "tagline": "Community arts, heritage, and cultural programs."},
+    "All topics": {
+        "key": None, "icon": "🔎", "color": "#1F6FEB",
+        "tagline": "Search everything in the collection.",
+        "example_query": "What programs improve early literacy outcomes for low-income students?",
+    },
+    "Education": {
+        "key": "education", "icon": "📚", "color": "#2563EB",
+        "tagline": "Programs, curricula, and learning outcomes.",
+        "example_query": "What programs improve early literacy outcomes for low-income students?",
+    },
+    "Environment & Conservation": {
+        "key": "environment", "icon": "🌱", "color": "#15803D",
+        "tagline": "Sustainability, climate, and conservation work.",
+        "example_query": "What strategies help reduce carbon emissions in urban communities?",
+    },
+    "Research": {
+        "key": "research", "icon": "🔬", "color": "#7C3AED",
+        "tagline": "Studies, evaluations, and methodology.",
+        "example_query": "What evaluation methods are used to measure long-term program impact?",
+    },
+    "Arts & Culture": {
+        "key": "arts_culture", "icon": "🎨", "color": "#DB2777",
+        "tagline": "Community arts, heritage, and cultural programs.",
+        "example_query": "How do community arts programs increase access for underserved neighborhoods?",
+    },
 }
 
 
@@ -150,7 +187,7 @@ st.markdown(
 
 query = st.text_area(
     "What would you like to find?",
-    placeholder="e.g. What programs improve early literacy outcomes for low-income students?",
+    placeholder=f"e.g. {domain_info['example_query']}",
     height=100,
 )
 
